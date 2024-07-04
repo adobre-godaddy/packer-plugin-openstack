@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/volumeactions"
+  "github.com/gophercloud/gophercloud/openstack/blockstorage/v3/volumes"
 
 	"github.com/gophercloud/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack/compute/v2/servers"
@@ -63,16 +64,17 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
 			return multistep.ActionHalt
 		}
 		volume := state.Get("volume_id").(string)
-		v := state.Get("volume_id").Extract()
-    ui.Say(fmt.Sprintf("----- debug0: %s", v))
+
+    v, err := volumes.Get(blockStorageClient, volume).Extract()
+    ui.Say(fmt.Sprintf("----- debug0: %s, %s", v, err))
 
 		err = volumeactions.SetImageMetadata(blockStorageClient, volume, volumeactions.ImageMetadataOpts{}).ExtractErr()
 		if err != nil {
 			err := fmt.Errorf("Error setting image metadata: %s", err)
 			ui.Error(err.Error())
 		}
-		volume = state.Get("volume_id").(string)
-    ui.Say(fmt.Sprintf("----- debug1: %s", volume))
+    v, err := volumes.Get(blockStorageClient, volume).Extract()
+    ui.Say(fmt.Sprintf("----- debug1: %s, %s", v, err))
 
 		// set ImageMetadata before uploading to glance so the new image captured the desired values
 		if len(config.ImageMetadata) > 0 {
