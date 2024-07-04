@@ -9,7 +9,6 @@ import (
 	"log"
 	"time"
 
-  "/home/jenkins/workspace/packer-hfs-almalinux9/gophercloud"
 	"github.com/gophercloud/gophercloud/openstack/blockstorage/extensions/volumeactions"
   "github.com/gophercloud/gophercloud/openstack/blockstorage/v3/volumes"
 
