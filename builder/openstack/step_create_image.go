@@ -67,7 +67,7 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
     ui.Say(fmt.Sprintf("----- debug0: %s", volume))
     v, err := volumes.Get(blockStorageClient, volume).Extract()
     ui.Say(fmt.Sprintf("----- debug1: %s, %s", v, err))
-    v, err = volumeactions.UnsetImageMetadata(blockStorageClient, volume, volumeactions.UnsetImageMetadataOpts{Key: "signature_verified"}).Extract()
+    v, err := volumeactions.UnsetImageMetadata(blockStorageClient, volume, volumeactions.UnsetImageMetadataOpts{Key: "signature_verified"}).Extract()
     ui.Say(fmt.Sprintf("----- debug2: %s, %s", v, err))
     v, err := volumes.Get(blockStorageClient, volume).Extract()
     ui.Say(fmt.Sprintf("----- debug3: %s, %s", v, err))
