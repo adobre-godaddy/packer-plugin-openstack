@@ -73,7 +73,7 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
 			err := fmt.Errorf("Error setting image metadata: %s", err)
 			ui.Error(err.Error())
 		}
-    v, err := volumes.Get(blockStorageClient, volume).Extract()
+    v, err = volumes.Get(blockStorageClient, volume).Extract()
     ui.Say(fmt.Sprintf("----- debug1: %s, %s", v, err))
 
 		// set ImageMetadata before uploading to glance so the new image captured the desired values
