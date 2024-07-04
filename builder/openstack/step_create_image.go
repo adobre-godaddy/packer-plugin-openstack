@@ -62,7 +62,7 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
 			state.Put("error", err)
 			return multistep.ActionHalt
 		}
-    v, err := state.Get().Extract()
+    v, err := state.Get("volume_id").Extract()
     ui.Say(fmt.Sprintf("----- debug1: %s, %s", v, err))
 		volume := state.Get("volume_id").(string)
 
