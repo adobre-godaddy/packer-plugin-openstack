@@ -62,8 +62,9 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
 			state.Put("error", err)
 			return multistep.ActionHalt
 		}
+    v, err := state.Get().Extract()
+    ui.Say(fmt.Sprintf("----- debug1: %s, %s", v, err))
 		volume := state.Get("volume_id").(string)
-    ui.Say(fmt.Sprintf("----- debug0: %s", volume))
 
 		// set ImageMetadata before uploading to glance so the new image captured the desired values
 		if len(config.ImageMetadata) > 0 {
