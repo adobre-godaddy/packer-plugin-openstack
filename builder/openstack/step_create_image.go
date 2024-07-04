@@ -94,7 +94,7 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
 			ImageName:  config.ImageName,
 		}).Extract()
 		if err != nil {
-			err := fmt.Errorf("Error creating image: %s", err)
+			err := fmt.Errorf("a.Error creating image: %s", err)
 			state.Put("error", err)
 			ui.Error(err.Error())
 			return multistep.ActionHalt
@@ -106,7 +106,7 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
 			Metadata: config.ImageMetadata,
 		}).ExtractImageID()
 		if err != nil {
-			err := fmt.Errorf("Error creating image: %s", err)
+			err := fmt.Errorf("b.Error creating image: %s", err)
 			state.Put("error", err)
 			ui.Error(err.Error())
 			return multistep.ActionHalt
