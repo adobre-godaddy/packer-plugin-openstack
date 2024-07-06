@@ -67,7 +67,7 @@ func (s *stepCreateImage) Run(ctx context.Context, state multistep.StateBag) mul
 
     v, err := volumes.Get(blockStorageClient, volume).Extract()
     ui.Say(fmt.Sprintf("----- debug0: %s, %s", v.VolumeImageMetadata, err))
-    err = volumeactions.UnsetImageMetadata(c.blockStorageService, volumeID, volumeactions.UnsetImageMetadataOpts{Key: "signature_verified"}).ExtractErr()
+    err = volumeactions.UnsetImageMetadata(blockStorageClient, volume, volumeactions.UnsetImageMetadataOpts{Key: "signature_verified"}).ExtractErr()
     ui.Say(fmt.Sprintf("----- debug1: %s, %s", v.VolumeImageMetadata, err))
 
 		err = volumeactions.SetImageMetadata(blockStorageClient, volume, volumeactions.ImageMetadataOpts{Metadata: map[string]string{"xxxxxxxxxxxxxxxx": "yyyyyyyyyyyy"}}).ExtractErr()
