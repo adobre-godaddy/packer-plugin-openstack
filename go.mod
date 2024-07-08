@@ -97,3 +97,4 @@ require (
 )
 
 replace github.com/zclconf/go-cty => github.com/nywilken/go-cty v1.13.3 // added by packer-sdc fix as noted in github.com/hashicorp/packer-plugin-sdk/issues/187
+replace github.com/gophercloud/gophercloud => github.com/adobre-godaddy/gophercloud v0.0.0-20240706180058-73677aa08003 // metadata unset for signature_required
